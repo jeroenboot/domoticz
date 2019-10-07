@@ -1,0 +1,233 @@
+[
+    {
+        "id": "ec3f9554.87b498",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5726fb7b.502904",
+        "type": "mqtt in",
+        "z": "ec3f9554.87b498",
+        "name": "Domoticz IDX18 sonoffsw7",
+        "topic": "domoticz/idx18/out",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 210,
+        "y": 180,
+        "wires": [
+            [
+                "2a7c5323.a044cc"
+            ]
+        ]
+    },
+    {
+        "id": "2a7c5323.a044cc",
+        "type": "switch",
+        "z": "ec3f9554.87b498",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "1340056c.561ddb"
+            ],
+            [
+                "ccd99ab1.df21f8"
+            ]
+        ]
+    },
+    {
+        "id": "8c88abe4.17f188",
+        "type": "mqtt out",
+        "z": "ec3f9554.87b498",
+        "name": "sonoffsw7 MQTT in (power)",
+        "topic": "sonoffsw7/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 780,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1340056c.561ddb",
+        "type": "change",
+        "z": "ec3f9554.87b498",
+        "name": "Off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 140,
+        "wires": [
+            [
+                "8c88abe4.17f188"
+            ]
+        ]
+    },
+    {
+        "id": "874c2831.824688",
+        "type": "mqtt out",
+        "z": "ec3f9554.87b498",
+        "name": "sonoffsw7 MQTT in (power)",
+        "topic": "sonoffsw7/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 780,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ccd99ab1.df21f8",
+        "type": "change",
+        "z": "ec3f9554.87b498",
+        "name": "On",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 220,
+        "wires": [
+            [
+                "874c2831.824688"
+            ]
+        ]
+    },
+    {
+        "id": "c273a7a7.4a5898",
+        "type": "mqtt in",
+        "z": "ec3f9554.87b498",
+        "name": "sonoffsw7/out",
+        "topic": "sonoffsw7/out",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 150,
+        "y": 420,
+        "wires": [
+            [
+                "749faa76.fc97b4"
+            ]
+        ]
+    },
+    {
+        "id": "749faa76.fc97b4",
+        "type": "json",
+        "z": "ec3f9554.87b498",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 430,
+        "y": 420,
+        "wires": [
+            [
+                "caa6f0f8.caa59"
+            ]
+        ]
+    },
+    {
+        "id": "caa6f0f8.caa59",
+        "type": "function",
+        "z": "ec3f9554.87b498",
+        "name": "Domoticz JSON - IDX18",
+        "func": "msg.payload.idx=Number(18);\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 420,
+        "wires": [
+            [
+                "913bc7f.cfdeb38"
+            ]
+        ]
+    },
+    {
+        "id": "83bd8e7b.855a2",
+        "type": "comment",
+        "z": "ec3f9554.87b498",
+        "name": "",
+        "info": "replace IDX for Domoticz IDX\nAll other values are already correct",
+        "x": 640,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "913bc7f.cfdeb38",
+        "type": "mqtt out",
+        "z": "ec3f9554.87b498",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 980,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "6d5b4d31.ec8ff4",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "RaspberryPI2",
+        "broker": "192.168.5.30",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]

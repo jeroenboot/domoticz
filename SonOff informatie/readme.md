@@ -12,6 +12,9 @@
 - Domoticz MQTT (192.168.5.30)
 - Use IP
 - Enable
+- Controller Subscribe $hostname/in (e.g. sonoffsw7/in)
+- Controller Publish $hostname/out
+
 
 ### Devices
 - SonOff S20
@@ -34,8 +37,10 @@ Generic MQTT import | MQTT | Topic1: | MQTTCMD
 
 ### MQTT
 
-Topic: e.g. sonoffsw7/in  
+Topic: e.g. sonoffsw7/in
+```
 mosquitto_pub -t 'sonoffsw7/in' -m '2'  
+```
 
 ```
 on MQTT#MQTTCMD=0 do //Off
