@@ -34,7 +34,8 @@ $sudo python ./esptool.py --baud 115200 --port /dev/cu.SLAB_USBtoUART write_flas
 
 
 ### Devices
-- SonOff S20
+#### SonOff S20
+
 device | name | GPIO | Values
 -----|------|-------|--------
 Switch|GPIO0|GPIO0|Sw0
@@ -44,9 +45,7 @@ Generic MQTT import | MQTT | Topic1: $hostname/in | MQTTCMD
 
 
 
-- ESP Oled
-
-#### Oled
+#### ESP Oled
 
 I2C: GPIO5 (SDA) GPIO4 (SCL)
 
