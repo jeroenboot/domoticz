@@ -1,0 +1,578 @@
+[
+    {
+        "id": "2532e5c4.543e7a",
+        "type": "tab",
+        "label": "Bridge 433Mhz",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5ade0719.2fb2c8",
+        "type": "mqtt in",
+        "z": "2532e5c4.543e7a",
+        "name": "tele/sonoffbr1/RESULT",
+        "topic": "tele/sonoffbr1/RESULT",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 240,
+        "y": 280,
+        "wires": [
+            [
+                "58eb66a2.28c6a8"
+            ]
+        ]
+    },
+    {
+        "id": "58eb66a2.28c6a8",
+        "type": "json",
+        "z": "2532e5c4.543e7a",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 270,
+        "y": 400,
+        "wires": [
+            [
+                "7167962.3fb8268"
+            ]
+        ]
+    },
+    {
+        "id": "33383062.e7697",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDX20 - RfKey2 - achterdeur",
+        "func": "var idx = 20\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 140,
+        "wires": [
+            [
+                "16d8aff.c708d5"
+            ]
+        ]
+    },
+    {
+        "id": "7167962.3fb8268",
+        "type": "switch",
+        "z": "2532e5c4.543e7a",
+        "name": "",
+        "property": "payload.RfReceived.RfKey",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "7",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "8",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "9",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "10",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "11",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "12",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "13",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "14",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "15",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "15",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 16,
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "b8d435bc.da24e8"
+            ],
+            [
+                "33383062.e7697"
+            ],
+            [
+                "80cc7f5b.b518f"
+            ],
+            [
+                "8b788cdd.cdd6d"
+            ],
+            [
+                "bb76e6ff.51da08"
+            ],
+            [
+                "7c3f4cc2.460e74"
+            ],
+            [
+                "239c0fca.87f08"
+            ],
+            [
+                "b9d639cd.30d3f8"
+            ],
+            [
+                "e80b6ce4.9a246"
+            ],
+            [
+                "80c7ada2.b4d9"
+            ],
+            [
+                "f738473f.f22c28"
+            ],
+            [
+                "64496c28.093184"
+            ],
+            [
+                "6ea91b01.3e3374"
+            ],
+            [
+                "470a8f46.e4063"
+            ],
+            [
+                "5a1a56e8.199268"
+            ],
+            [
+                "1a608c0f.c655d4"
+            ]
+        ]
+    },
+    {
+        "id": "90db92bd.2801f",
+        "type": "comment",
+        "z": "2532e5c4.543e7a",
+        "name": "",
+        "info": "Switcher on received DATA (ID from 433 sensor), payload.RfReceived.Data\nMore \"secure\" would be to use RfReceived.RfKey and link sensor to any of the 16 RfKeys of the bridge\n\n\nContact\n\n582BE1 = RfKey2  = achterdeur\n9C7AE1 = RfKey5  = huiskamer\n1751E1 = RfKey4  = schuurdeur\nF1D2C1 = RfKey3  = voordeur\n813EC1 = RfKey7  = quinten\n968EC1 = RfKey6  = slaapkamer\n\nBeweging\n\nEF3CEE = RfKey12 = beweging schuur\nD1605E = RfKey1  = beweging poort\nEE38EE = RfKey13 = beweging acterdeur",
+        "x": 480,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "16d8aff.c708d5",
+        "type": "mqtt out",
+        "z": "2532e5c4.543e7a",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 1230,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "b8d435bc.da24e8",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDX21 - RfKey1 - beweging poort",
+        "func": "var idx = 21\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 100,
+        "wires": [
+            [
+                "12874a1.15b26b6"
+            ]
+        ]
+    },
+    {
+        "id": "80cc7f5b.b518f",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDX22 - RfKey3 - voordeur",
+        "func": "var idx = 22\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 850,
+        "y": 180,
+        "wires": [
+            [
+                "302ee615.6dfe6a"
+            ]
+        ]
+    },
+    {
+        "id": "8b788cdd.cdd6d",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDX23 - RfKey4 - schuurdeur",
+        "func": "var idx = 23\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 220,
+        "wires": [
+            [
+                "ce328ffc.7a234"
+            ]
+        ]
+    },
+    {
+        "id": "bb76e6ff.51da08",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDX24 - RfKey5 - huiskamerraam",
+        "func": "var idx = 24\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 260,
+        "wires": [
+            [
+                "36afcc3a.ef6c74"
+            ]
+        ]
+    },
+    {
+        "id": "7c3f4cc2.460e74",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDX25 - RfKey6 - slaapkamerraam",
+        "func": "var idx = 25\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 880,
+        "y": 300,
+        "wires": [
+            [
+                "3510c39b.e6e76c"
+            ]
+        ]
+    },
+    {
+        "id": "239c0fca.87f08",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDX26 - RfKey7 - quintenraam",
+        "func": "var idx = 26\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 340,
+        "wires": [
+            [
+                "612ef8c5.c2be68"
+            ]
+        ]
+    },
+    {
+        "id": "b9d639cd.30d3f8",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDXxx - RfKey8",
+        "func": "var idx = xx\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e80b6ce4.9a246",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDXxx - RfKey9",
+        "func": "var idx = xx\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "80c7ada2.b4d9",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDXxx - RfKey10",
+        "func": "var idx = xx\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f738473f.f22c28",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDXxx - RfKey11",
+        "func": "var idx = xx\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64496c28.093184",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDX27 - RfKey12 - beweging schuur",
+        "func": "var idx = 27\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 880,
+        "y": 540,
+        "wires": [
+            [
+                "897450b3.b1062"
+            ]
+        ]
+    },
+    {
+        "id": "6ea91b01.3e3374",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDX28 - RfKey13 - beweging acterdeur",
+        "func": "var idx = 28\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 890,
+        "y": 580,
+        "wires": [
+            [
+                "34223d78.8d30b2"
+            ]
+        ]
+    },
+    {
+        "id": "470a8f46.e4063",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDXxx - RfKey14",
+        "func": "var idx = xx\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5a1a56e8.199268",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDXxx - RfKey15",
+        "func": "var idx = xx\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1a608c0f.c655d4",
+        "type": "function",
+        "z": "2532e5c4.543e7a",
+        "name": "Domoticz JSON - IDXxx - RfKey16",
+        "func": "var idx = xx\n\n\nmsg = {};\npayload = {};\nmsg.payload=payload;\nmsg.payload.idx=Number(idx);\nmsg.payload.command=\"switchlight\"\nmsg.payload.switchcmd=\"On\"\nmsg.topic=\"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "12874a1.15b26b6",
+        "type": "mqtt out",
+        "z": "2532e5c4.543e7a",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 1230,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "302ee615.6dfe6a",
+        "type": "mqtt out",
+        "z": "2532e5c4.543e7a",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 1230,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ce328ffc.7a234",
+        "type": "mqtt out",
+        "z": "2532e5c4.543e7a",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 1230,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "36afcc3a.ef6c74",
+        "type": "mqtt out",
+        "z": "2532e5c4.543e7a",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 1230,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3510c39b.e6e76c",
+        "type": "mqtt out",
+        "z": "2532e5c4.543e7a",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 1230,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "612ef8c5.c2be68",
+        "type": "mqtt out",
+        "z": "2532e5c4.543e7a",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 1230,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "897450b3.b1062",
+        "type": "mqtt out",
+        "z": "2532e5c4.543e7a",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 1230,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "34223d78.8d30b2",
+        "type": "mqtt out",
+        "z": "2532e5c4.543e7a",
+        "name": "domoticz/in",
+        "topic": "domoticz/in",
+        "qos": "",
+        "retain": "",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 1230,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "6d5b4d31.ec8ff4",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "RaspberryPI2",
+        "broker": "192.168.5.30",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]

@@ -18,7 +18,8 @@ https://github.com/arendst/Sonoff-Tasmota/wiki/commands
 | type| naamgeving|topic|
 |-----|---------|------|
 | S20 | sonoffsw<#> |%prefix%/%topic%/ |
-|4channel | sonoff4ch<#> |%prefix%/%topic%/ |
+|4channel | sonoff4ch<#>|%prefix%/%topic%/ |
+|433 Bridge| sonoffbr<#>|%prefix%/%topic%/ |
 
 
 
@@ -66,6 +67,7 @@ tele/sonoffsw1/SENSOR {
 ## voorbeelden (MQTT messages)
 
 ### power (Sonoff 4channel)
+```
 tele/sonoff4ch/STATE
 {
   "Time":"2019-10-06T12:50:02"
@@ -88,9 +90,11 @@ tele/sonoff4ch/STATE
     "Downtime":"0T00:00:10"
   }
 }
+```
 
 
 ### Relais/power (S20)
+```
 tele/sonoffsw1/STATE
   {
     "Time":"2019-10-06T12:46:16",
@@ -110,9 +114,26 @@ tele/sonoffsw1/STATE
       "Downtime":"0T00:00:06"
     }
 }
+```
+
+
+### SonOff Bridge (433mhz bridge)
+```
+tele/sonoffbr1/RESULT
+   {
+     "RfReceived":{
+       "Sync":14080,
+       "Low":470,
+       "High":1380,
+       "Data":"582BE1",
+       "RfKey":2
+     }
+   }
+```
 
 
 ### DHT22 sensor (S20)
+```
 tele/sonoffsw1/SENSOR
 {
   "Time":"2019-10-06T12:49:46"
@@ -121,3 +142,5 @@ tele/sonoffsw1/SENSOR
     "Humidity":60.1},
     "TempUnit":"C"
   }
+}
+```

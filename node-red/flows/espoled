@@ -1,0 +1,41 @@
+[
+    {
+        "id": "770ee6d5.390468",
+        "type": "mqtt in",
+        "z": "e62a3f95.63fe3",
+        "name": "espoled1/out",
+        "topic": "espoled1/out",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6d5b4d31.ec8ff4",
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "1d92631a.50533d"
+            ]
+        ]
+    },
+    {
+        "id": "6d5b4d31.ec8ff4",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "RaspberryPI2",
+        "broker": "192.168.5.30",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
