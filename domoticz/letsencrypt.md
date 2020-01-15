@@ -13,7 +13,7 @@ sudo letsencrypt certonly --webroot --email <email> -d <site> -w /home/pi/docker
 
 ## renew
 
-###Enable port 80 in FW en NAT
+### Enable port 80 in FW en NAT
 ```
 sudo letsencrypt certonly --webroot --email <email> -d <site> -w /home/pi/docker/rpi-domoticz/www
 
@@ -26,4 +26,4 @@ sudo cp /home/pi/docker/rpi-domoticz/config/keys/server_cert.pem /home/pi/docker
 docker restart domoticz
 ```
 
-###Disable port 80 in FW en NAT
+### Disable port 80 in FW en NAT
