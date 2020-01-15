@@ -1,19 +1,20 @@
-### Install
+## Install
 ```
 sudo apt-get install -y git letsencrypt
 
 ```
 
-### run
+## run
 
 sudo letsencrypt certonly --webroot --email <email> -d <site> -w /home/pi/docker/rpi-domoticz/www
 /var/lib/domoticz/www
 
 
 
-### renew
+## renew
 
-####Enable port 80 in FW en NAT
+###Enable port 80 in FW en NAT
+```
 sudo letsencrypt certonly --webroot --email <email> -d <site> -w /home/pi/docker/rpi-domoticz/www
 
 sudo mv /home/pi/docker/rpi-domoticz/config/keys/server_cert.pem /home/pi/docker/rpi-domoticz/config/keys/server_cert.pem.org 
@@ -23,6 +24,6 @@ sudo cat /home/pi/docker/rpi-domoticz/config/keys/RSA2048.pem >> /home/pi/docker
 
 sudo cp /home/pi/docker/rpi-domoticz/config/keys/server_cert.pem /home/pi/docker/rpi-domoticz/config/keys/letsencrypt_server_cert.pem
 docker restart domoticz
+```
 
-
-####Disable port 80 in FW en NAT
+###Disable port 80 in FW en NAT
